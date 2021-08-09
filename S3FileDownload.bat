@@ -10,9 +10,9 @@ echo parameter4:configure the amount of files that you would like to download at
 echo aws2 s3api list-objects-v2 --bucket qa2-trunk-be-integration--service --prefix parameter3 --query "Contents[?(LastModified>='parameter1' && LastModified<='parameter2')].Key"
 echo ---------------------------------------------------------------------------------------------------------------------------------------------------
 SET folder=%3
-IF %folder% EQU all aws2 s3api list-objects-v2 --bucket qa2-trunk-be-integration--service --query "Contents[?(LastModified>='%1' && LastModified<= '%2')].Key" > a.txt
-IF %folder% EQU attachment aws2 s3api list-objects-v2 --bucket qa2-trunk-be-integration--service --prefix attachment  --query "Contents[?(LastModified>='%1' && LastModified<= '%2')].Key" > a.txt
-IF %folder% EQU csv aws2 s3api list-objects-v2 --bucket qa2-trunk-be-integration--service --prefix csv  --query "Contents[?(LastModified>='%1' && LastModified<= '%2')].Key" > a.txt
+IF %folder% EQU all aws2 s3api list-objects-v2 --bucket {bucketName}  --query "Contents[?(LastModified>='%1' && LastModified<= '%2')].Key" > a.txt
+IF %folder% EQU attachment aws2 s3api list-objects-v2 --bucket {bucketName}  --prefix attachment  --query "Contents[?(LastModified>='%1' && LastModified<= '%2')].Key" > a.txt
+IF %folder% EQU csv aws2 s3api list-objects-v2 --bucket {bucketName}  --prefix csv  --query "Contents[?(LastModified>='%1' && LastModified<= '%2')].Key" > a.txt
 setlocal EnableExtensions DisableDelayedExpansion
 rem // Write output to another file:
 > "b.txt" (
